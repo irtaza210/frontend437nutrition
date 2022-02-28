@@ -192,6 +192,7 @@ class MenuPage extends Component {
 
     render() {
         // If showCustomForm is true, display the form (takes up the whole screen)
+        const mySet1 = new Set()
         if (this.state.selectedLocation === "Custom Meals" && this.state.showCustomForm && this.state.filteredMeals.length > 0) {
             return (
                 <div>
@@ -205,11 +206,27 @@ class MenuPage extends Component {
             //         <strong>{item.name}</strong>
             //     </div>
             // );
-            let elements = this.state.filteredMeals.map((item, index) =>
-                <div className="box" key={index} onClick={this.handleMealClick.bind(this, item)}>
-                    <strong>{item.name}</strong>
-                </div>
-            );
+            let elements = this.state.filteredMeals.map((item, index) => {
+                if (mySet1.has(item.name)) {
+                    //alert("dupliate")
+                }
+                else {
+                    mySet1.add(item.name);
+                    return (
+                        <div className="box" key={index} onClick={this.handleMealClick.bind(this, item)}>
+                        <strong>{item.name}</strong>
+                        </div>
+                    );
+                }
+            });
+                
+                
+            // let elements = this.state.filteredMeals.map((item, index) =>
+                
+            //     <div className="box" key={index} onClick={this.handleMealClick.bind(this, item)}>
+            //         <strong>{item.name}</strong>
+            //     </div>
+            // );
 
             // If a meal is clicked, show detail view for that meal below list of meals, otherwise
             //  just show the list of meals for that location
