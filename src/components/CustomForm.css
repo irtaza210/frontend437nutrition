@@ -1,0 +1,7 @@
+#custom-meal-form {
+    margin: 100px;
+    padding: 10px;
+}
+#custom-meal-form label{
+    display: block;
+}

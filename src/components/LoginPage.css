@@ -1,0 +1,293 @@
+.main {
+  background-color: #fefefe;
+  width: 400px;
+  height: 500px;
+  margin: 7em auto;
+  border-radius: 1.5em;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
+
+.sign {
+  /* display: block; */
+  position: relative;
+  padding-top: 10px;
+  color: #eb7617;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  font-size: 23px;
+}
+
+.un {
+width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+margin-bottom: 20px;
+margin-left: 46px;
+text-align: center;
+font-family: 'Ubuntu', sans-serif;
+}
+
+form.form1 {
+  padding-top: 10px;
+}
+
+.pass, .confirmPass {
+  width: 76%;
+  color: rgb(38, 50, 56);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: rgba(136, 126, 126, 0.04);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.02);
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+}
+.pass, .un, .confirmPass {
+  display: block;
+}
+
+.un:focus, .pass:focus, .confirmPass:focus {
+  border: 2px solid rgba(0, 0, 0, 0.18) !important;
+  
+}
+.confirmPass {
+  margin-bottom: 30px;
+}
+.submit {
+  cursor: pointer;
+  border-radius: 5em;
+  color: white;
+  background: linear-gradient(to right, #eb5a17, #ffaa49);
+  border: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 13px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+.forgot {
+  /* text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12); */
+  color: #ff9741;
+  font-size: 14px;
+  margin-top: 22px;
+  margin-bottom: 10px;
+}
+
+.reset {
+  text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+  color: #ff9741;
+  font-size: 14px;
+  margin-top: 22px;
+  margin-bottom: 10px;
+  
+  padding: 10px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+a.link2 {
+  text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+  color: #ff9741;
+  font-style: italic;
+  font-size: 12px;
+  text-decoration: none
+}
+
+a.link {
+  /* text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12); */
+  color: #fefefe;
+  text-decoration: none
+}
+
+#registering {
+  color: #587252;
+}
+#logo1 {
+  display: block;
+  /* position: absolute; */
+  width: 100px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  
+}
+
+@media (max-width: 600px) {
+  .main {
+      border-radius: 0px;
+  }
+}
+
+/* Below code (for the register form) taken from https://www.sanwebe.com/2014/08/css-html-forms-designs */
+.form-style-3{
+	max-width: 450px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  margin: 30px auto auto;
+}
+.form-style-3 label{
+	display:block;
+	margin-bottom: 10px;
+  color: #eb7617;
+  font-weight: 500;
+  text-align: left;
+  width: 300px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  padding-right: 0px;
+}
+.form-style-3 #dietLabel {
+  margin-top: 15px;
+  font-weight: bolder;
+}
+.form-style-3 input[type="checkbox"] {
+  margin: 0px 5px 0px 0px;
+  /* margin-right: 5px; */
+}
+
+.checkboxLabel {
+  display: block;
+  padding: 0;
+}
+
+.form-style-3 label > span{
+	/* float: left; */
+	/* width: 100px; */
+  display: inline-block;
+	color: #eb7617;
+	font-weight: bold;
+	font-size: 13px;
+	/* text-shadow: 1px 1px 1px rgb(116, 109, 109); */
+  margin-top: 5px;
+  width: 90px;
+}
+/* .checkboxLabel > span {
+  font-size: 15px;
+} */
+
+#confirmSpan {
+  margin-top: 0px;
+}
+.form-style-3 fieldset{
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	margin: 0px 0px 10px 0px;
+	border: 1px solid #ffffff;
+	padding: 20px;
+	background: #fefefe;
+	/* box-shadow:  0px 0px 15px  rgb(0 0 0 / 0.2); */
+	/* -moz-box-shadow: 0px 0px 15px rgb(0 0 0 / 0.2); */
+	-webkit-box-shadow:  0px 0px 15px  rgb(0 0 0 / 0.2);
+  padding-left: 40px;
+}
+.form-style-3 fieldset legend{
+	color: #fefefe;
+	border-top: 1px solid transparent;
+	border-left: 1px solid transparent;
+	border-right: 1px solid transparent;
+	border-radius: 5px 5px 0px 0px;
+	-webkit-border-radius: 5px;
+	/* -webkit-border-radius: 5px 5px 0px 0px; */
+	/* -moz-border-radius: 5px 5px 0px 0px; */
+	-moz-border-radius: 5px ;
+	background: #587252;
+	padding: 0px 8px 3px 8px;
+	box-shadow: -0px -1px 2px #F1F1F1;
+	-moz-box-shadow:-0px -1px 2px #F1F1F1;
+	-webkit-box-shadow:-0px -1px 2px #F1F1F1;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+.form-style-3 input[type=text],
+.form-style-3 input[type=number],
+.form-style-3 input[type=email],
+.form-style-3 input[type=password],
+/* .form-style-3 select.select-field, */
+.form-style-3 select {
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border: 1px solid transparent;
+	outline: none;
+	color: #eb7617;
+	padding: 5px 8px 5px 8px;
+	box-shadow: inset 1px 1px 4px  rgb(0 0 0 / 0.2);
+	-moz-box-shadow: inset 1px 1px 4px  rgb(0 0 0 / 0.2);
+	-webkit-box-shadow: inset 1px 1px 4px  rgb(0 0 0 / 0.2);
+	background: #f5f5f5;
+	width: 190px;
+  float: right;
+  /* margin-top: 5px; */
+  
+}
+/* margin: top right bottom left */
+.form-style-3 input#heightfeet,
+.form-style-3 input#heightinches {
+  float: none;
+  /* margin: 5px 0px 0px 10px; */
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.form-style-3 #heightinputs {
+  float: right;
+  width: 190px;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* .form-style-3  input[type=button], */
+.form-style-3  input[type=submit] {
+	background: #eb7617;
+	border: 1px solid #eb7617;
+	padding: 5px 15px 5px 15px;
+	color: #fefefe;
+	box-shadow: inset -1px -1px 3px  rgb(0 0 0 / 0.2);
+	-moz-box-shadow: inset -1px -1px 3px  rgb(0 0 0 / 0.2);
+	-webkit-box-shadow: inset -1px -1px 3px  rgb(0 0 0 / 0.2);
+	border-radius: 3px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;	
+	font-weight: bold;
+  margin-left: auto;
+  width: 83px;
+}
+.required{
+	color:red;
+	font-weight:normal;
+}
+
+#heightLabel span {
+  display: inline-block;
+  width: 50px;
+}
+#heightfeet, #heightinches {
+  display: inline-block;
+  width: 50px;
+  margin: 5px;
+}

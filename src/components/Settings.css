@@ -1,0 +1,39 @@
+/* Not using reset button for now */
+.form-style-3 input[type=reset] {
+    /* background: #EB3B88; */
+    background: #c4c4c4;
+	border: 1px solid #eb7617;
+	padding: 5px 15px 5px 15px;
+	color: #eb7617;
+	box-shadow: inset -1px -1px 3px rgb(0 0 0 / 0.2);
+	-moz-box-shadow: inset -1px -1px 3px rgb(0 0 0 / 0.2);
+	-webkit-box-shadow: inset -1px -1px 3px rgb(0 0 0 / 0.2);
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;	
+	font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    width: 83px;
+	height: 7px;
+}
+.form-style-3 form {
+	position: absolute;
+	margin-top: 70px;
+	left: 35%;
+	/* width: 300px; */
+}
+.form-style-3 fieldset {
+	color: #eb7617;
+	/* width: 300px; */
+}
+@media screen and (max-width: 426px) {
+
+	.form-style-3{
+		position: absolute;
+		left: 6%;
+		/* width: 300px; */
+	}
+
+}
