@@ -155,15 +155,15 @@ class Home extends Component {
         console.log("______Fetching user meals ____________");
 
         let user = JSON.parse(localStorage.getItem('loggedinuser'));    // get user from local storage
-        console.log(user);
+        // console.log(user);
         if (user !== null) {
             let uid = user.uid;
-            console.log(uid);
+            // console.log(uid);
 
             db.collection("todaysmeals").doc(uid).get().then((doc) => {
                 // Got all meals for the user
                 let mealsArr = doc.data().meals;  // get meals array field of the entry i
-                console.log(`Data we got: ${mealsArr}`);
+                // console.log(`Data we got: ${mealsArr}`);
                 var stateArray = [];    // temp array (will assign to mealsArray afterward)
 
                 var totalsTemp = {  // will assign to userTotals later
@@ -184,7 +184,7 @@ class Home extends Component {
                 if (mealsArr.length === 0) {
                     db.collection("users").doc(uid).get().then((doc) => {
                         let data = doc.data();
-                        console.log(doc.data());
+                        // console.log(doc.data());
 
                         this.setState({
                             heightfeet: data.heightfeet,
@@ -195,7 +195,7 @@ class Home extends Component {
                             // mealsArray: stateArray,
                             // userTotals: totalsTemp,
                         }, function () {
-                            console.log("Just set height & weight");
+                            // console.log("Just set height & weight");
                         });
 
                     });
@@ -235,7 +235,7 @@ class Home extends Component {
                             totalsTemp['vit_a_per'] += mealObj.nutrition.vit_a_per;
                             totalsTemp['vit_c_per'] += mealObj.nutrition.vit_c_per;
 
-                            console.log(totalsTemp);
+                            // console.log(totalsTemp);
                             // ---------------------------------------------- //
 
                             // push() returns the new length of the array 
@@ -243,7 +243,7 @@ class Home extends Component {
 
                                 db.collection("users").doc(uid).get().then((doc) => {
                                     let data = doc.data();
-                                    console.log(doc.data());
+                                    // console.log(doc.data());
 
                                     this.setState({
                                         heightfeet: data.heightfeet,
@@ -254,7 +254,7 @@ class Home extends Component {
                                         mealsArray: stateArray,
                                         userTotals: totalsTemp,
                                     }, function () {
-                                        console.log("Just set height & weight");
+                                        // console.log("Just set height & weight");
                                     });
 
                                 });
