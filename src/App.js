@@ -297,15 +297,17 @@ class App extends Component {
   }
 
   addMealToPastMeals(uid, meal_id) {
+    var alertMessage = "Meal added!";
     // get the past_meals object
     db.collection("users").doc(uid).get().then((doc) => {
       var pastMeals = JSON.parse(doc.data().past_meals);
-      console.log(pastMeals);
+      // console.log(pastMeals);
       let formattedDate = this.formatDate(new Date());
-
       if (pastMeals[formattedDate]) {
           let mealsArr = pastMeals[formattedDate];
-          if(mealsArr[mealsArr.indexOf(meal_id)] === -1) pastMeals[formattedDate].push(meal_id);
+          // Add if meal is not already in past_meals for this date
+          if(mealsArr.indexOf(meal_id) === -1) pastMeals[formattedDate].push(meal_id);
+          else alertMessage = "You already have this meal on your plate.";
       } else {
         pastMeals[formattedDate] = [meal_id];
       }
@@ -313,8 +315,8 @@ class App extends Component {
       db.collection('users').doc(uid).update({
         past_meals: JSON.stringify(pastMeals)
       }).then(() => {
-        console.log("--- Updated past_meals field ----" + formattedDate);
-        alert("Meal Added!");
+        console.log(alertMessage);
+        alert(alertMessage);
       });
     });
   }
