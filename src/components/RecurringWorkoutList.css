@@ -1,0 +1,9 @@
+.workoutList2 {
+    float: left;
+    height: 400px;
+    width: 49%;
+}
+#add2 {
+    background-color: purple;
+    color: white;
+}

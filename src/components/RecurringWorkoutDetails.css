@@ -1,0 +1,14 @@
+.workoutDetails2 {
+    /* width: 200px;
+    height: 200px;
+    z-index: 100; */
+    /* position: fixed; */
+    /* left: 125%;
+    top: 0px; */
+    /* border: 1px solid; */
+    width: 30%;
+    display: inline-block;
+}
+#workoutSubmitBtn2 {
+    background-color:chartreuse;
+}

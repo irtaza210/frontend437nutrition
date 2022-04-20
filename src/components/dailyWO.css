@@ -1,0 +1,57 @@
+.workoutContent {
+    /* height: 500px;
+    margin-top: 150px;
+    width: 100%;
+    border: 1px solid; */
+
+    /* position: fixed; */
+  /* top: 60%;
+  left: 50%; */
+  /* bring your own prefixes */
+  
+  width: 100%;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  
+  
+  /* transform: translate(-50%, -50%); */
+    
+    /* float: left; */
+    /* border: 1px solid; */
+}
+#save, #add{
+    background-color: black;
+    color: white;
+}
+#save {
+    width: 150px;
+  background-color: #FA9741;
+}
+#add {
+    width: 150px;
+  background-color: #FA9741;
+}
+
+#dailyWOback {
+  /* position: fixed;
+  top: 7%; */
+  background-color: black;
+  color: white;
+}
+#dailyWOheader {
+  /* position: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center; */
+}
+
+#backBtnDailyWO {
+    position: relative;
+    background-color: #fdca9c;
+}
+
+#backBtnDailyWO:hover {
+    background-color: #FA9741;
+}
