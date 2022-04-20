@@ -1,0 +1,23 @@
+.checkboxGreen {
+    background-color: #caffcd;
+    width: 30%;
+    margin: auto;
+    text-align: left;
+}
+.checkboxRed {
+    background-color: #ffb9b9;
+    width: 30%;
+    margin: auto;
+    text-align: left;
+}
+.leftLabels {
+    width: 80%;
+    float: left;
+}
+
+#deleteBtn {
+    text-align: right;
+    color: white;
+    background-color: #ff0000;
+
+}

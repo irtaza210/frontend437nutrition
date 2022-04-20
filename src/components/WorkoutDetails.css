@@ -1,0 +1,8 @@
+.workoutDetails {
+    width: 200px;
+    height: 200px;
+    z-index: 100;
+}
+#workoutSubmitBtn {
+background-color: peachpuff;
+}

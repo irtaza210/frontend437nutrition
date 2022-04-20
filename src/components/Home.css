@@ -1,0 +1,119 @@
+* {
+    /* font-family: sans-serif;  */
+    font-family: Helvetica, Verdana, sans-serif;
+
+}
+body {
+    /* background-image: url(background.jpeg); */
+    /* background-size: cover;
+    background-repeat: no-repeat; */
+    background-color: #fefefe;
+
+    /* background: linear-gradient(to top, #ece9e6,#fefefe); */
+    /* color: #fefefe; */
+}
+#chart {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    display: block;
+    /* width: 30%; */
+    background-color: #fefefe;
+    border: 1px grey;
+    border-radius: 10px;
+    top: 15%;
+    left: 5%;
+    border: 1px solid grey;
+    /* position: relative;
+    top: 400px; */
+}
+
+#total {
+    position: absolute;
+    top: 90px;
+    left: 90px;
+    border: 1px solid;
+    /* background-color: #fab074; */
+    background-color: #fefefe;
+    font-size: 10px;
+    width: 300px;
+    padding: 5px 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    display: block;
+    color: #eb7617;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    z-index: 1;
+}
+#recommended {
+    position: absolute;
+    top: 140px;
+    left: 90px;
+    border: 1px solid transparent;
+    /* background-color:#c2ecb0;  */
+    background-color: #ff9a42;
+    color: #fefefe;
+    border-radius: 0px 0px 10px 10px;
+    font-size: 10px;
+    width: 300px;
+    padding: 5px 20px 0px 20px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 0;
+    /* border: 10px solid black; */
+    height: 55px;
+    /* top: -20px; */
+    /* display: block; */
+}
+
+@media screen and (max-width: 426px) {
+
+#chart {
+    /* background-color: #eb7617; */
+    left: 8%;
+    top: 100px;
+    z-index: 0;
+}
+
+#total{
+    top:110px;
+    font-size: 8px;
+    left: 12%;
+    width: 280px;
+    z-index: 2;
+
+}
+
+#recommended {
+    top: 155px;
+    font-size: 8px;
+    left: 12%;
+    width: 280px;
+    z-index: 1;
+}
+    
+}
+
+/* laptop */
+@media screen and (min-width: 769px) and (max-width: 1029px) {
+
+    #chart {
+        /* background-color: #eb7617; */
+        left: 45%;
+        top: 0px;
+    }
+    #total{
+        /* top: 150px; */
+        font-size: 9px;
+        /* left: 13%; */
+    }
+    
+    #recommended {
+        /* top: 200px; */
+        font-size: 9px;
+        /* left: 13%; */
+    }
+
+}
