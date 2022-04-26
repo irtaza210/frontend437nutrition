@@ -2,7 +2,12 @@
     width: 200px;
     height: 200px;
     z-index: 100;
+    clear: both;
+    margin-top: 20px;
 }
 #workoutSubmitBtn {
-background-color: peachpuff;
+    background-color: peachpuff;
+}
+.workoutDetailsTitle {
+    margin-top: 183px;
 }

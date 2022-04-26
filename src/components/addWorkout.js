@@ -71,7 +71,9 @@ class AddWorkout extends Component {
                                     </label>
                                 </div>
                             </form>
-                            <WorkoutList option={this.state.selected} date={this.state.date}/>
+                            <div class="workoutListComponent">
+                                <WorkoutList option={this.state.selected} date={this.state.date} />
+                            </div>
                         </div>
                     </div>
                 </div>

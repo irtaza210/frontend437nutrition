@@ -66,7 +66,7 @@ class WorkoutList extends Component {
         } else {
             var workouts = Array.from(this.state.workouts[this.props.option]);
             let workoutElements = workouts.map(workoutName => (
-                <Button key={workoutName} size="small" onClick={() => this.addWorkout(workoutName)} id="addSmall">{workoutName}</Button>
+                <Button key={workoutName} size="small" style={{ width: "200px"}} onClick={() => this.addWorkout(workoutName)} id="addSmall">{workoutName}</Button>
             ));
             return (
                 <div className="workoutList">

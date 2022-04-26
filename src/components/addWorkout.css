@@ -56,3 +56,11 @@
 #backBtn:hover {
     background-color: #FA9741;
 }
+
+.workoutListComponent {
+    height: 200px;
+    width: 50%;
+    float: right;
+    text-align: left;
+    display: block;
+}

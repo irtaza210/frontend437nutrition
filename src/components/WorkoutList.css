@@ -2,12 +2,19 @@
 #addSmall {
     float: right;
     /* width: 50px; */
-  background-color: #FA9741;
+    background-color: #FA9741;
     margin-left: 10px;
     margin-bottom: 10px;
     margin-top: 10px;
     margin-right: 10px;
 }
+
 #workoutListElement{
     float: left;
+
+}
+
+.workoutBtn {
+    height: 40px;
+    width: 200px;
 }

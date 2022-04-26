@@ -45,7 +45,7 @@ class PastMeals extends Component {
             return(
                 <>
                     <div className="pastMealsContainer">
-                        <h2>Your Past Meals for {this.props.date}</h2>
+                    <h2 className="pastMealsHeader">Your Past Meals for {this.props.date}</h2>
                         {mealElements}
                     </div>
                 </>
@@ -56,7 +56,7 @@ class PastMeals extends Component {
             this.fetchPastMeals(this.props.date);
             return (
                 <div className="pastMealsContainer">
-                    <h2>Your Past Meals for {this.props.date}</h2>
+                    <h2 className="pastMealsHeader">Your Past Meals for {this.props.date}</h2>
                     <div>You have no meals for this date.</div>
                 </div>
             );
