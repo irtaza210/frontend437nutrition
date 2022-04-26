@@ -28,6 +28,13 @@
 	color: #eb7617;
 	/* width: 300px; */
 }
+#settingsupdate {
+	background-color: orange;
+
+}
+#yourprofile {
+	background-color: orange;
+}
 @media screen and (max-width: 426px) {
 
 	.form-style-3{

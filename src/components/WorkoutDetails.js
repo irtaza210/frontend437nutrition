@@ -2,18 +2,13 @@ import React, { Component } from 'react'
 import './WorkoutDetails.css';
 import firebase from "../fire";
 import { db } from '../fire';
-import WOCheckbox from './WOCheckbox'; 
 import Button from '@material-ui/core/Button';
-import { doc, updateDoc } from "firebase/firestore";
-
-// import Button from '@material-ui/core/Button';
+import TextField from "@material-ui/core/TextField";
 
 class WorkoutDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            workout: this.props.workout,
-            date: this.props.date,
             currentWorkoutId: -1,
         }
     }
@@ -35,7 +30,7 @@ class WorkoutDetails extends Component {
                 let uid = firebase.auth().currentUser.uid;
                 db.collection("workouts").get().then(querySnapshot => {
                     querySnapshot.docs.forEach(doc2 => {
-                        if (doc2.data().name === this.state.workout) {
+                        if (doc2.data().name === this.props.workout) {
                             this.setCurrentWorkoutId(doc2.id).then(response => {
                                 resolve("id retrieved successfully");
                             }).catch();
@@ -47,6 +42,7 @@ class WorkoutDetails extends Component {
     }
 
     saveWorkout = (event) => {
+        let date = this.props.date;
         event.preventDefault();
         this.getWorkoutID().then(id => {
             if (this.state.currentWorkoutId !== -1) {
@@ -58,8 +54,8 @@ class WorkoutDetails extends Component {
                         var reps = event.target.elements.numberOfReps.value
                         var weight = event.target.elements.workoutWeight.value
                         var sets = event.target.elements.numberOfSets.value
-                        if (!(this.state.date in workout_hist)){
-                            workout_hist[this.state.date] = []
+                        if (!(date in workout_hist)){
+                            workout_hist[date] = []
                         }
                         
                         var currWorkout = {
@@ -70,48 +66,49 @@ class WorkoutDetails extends Component {
                             completed: false
                         }
                         let isUnique = true;
-                        for(let i = 0; i < workout_hist[this.state.date].length; i++) {
-                            // console.log(workout_hist[this.state.date].id + " - " + currWorkout.id);
-                            if (workout_hist[this.state.date][i].id === currWorkout.id && (workout_hist[this.state.date][i].sets !== currWorkout.sets || workout_hist[this.state.date][i].reps !== currWorkout.reps || workout_hist[this.state.date][i].weight !== currWorkout.weight)) {
+                        for(let i = 0; i < workout_hist[date].length; i++) {
+                            // console.log(workout_hist[date].id + " - " + currWorkout.id);
+                            if (workout_hist[date][i].id === currWorkout.id && (workout_hist[date][i].sets !== currWorkout.sets || workout_hist[date][i].reps !== currWorkout.reps || workout_hist[date][i].weight !== currWorkout.weight)) {
                                 isUnique = false;
-                                workout_hist[this.state.date][i].sets = currWorkout.sets;
-                                workout_hist[this.state.date][i].reps = currWorkout.reps;
-                                workout_hist[this.state.date][i].weight = currWorkout.weight;
-                                workout_hist[this.state.date][i].completed = false;
+                                workout_hist[date][i].sets = currWorkout.sets;
+                                workout_hist[date][i].reps = currWorkout.reps;
+                                workout_hist[date][i].weight = currWorkout.weight;
+                                workout_hist[date][i].completed = false;
                                 alert("Workout already exists, we have updated your information.");
                             }
-                            else if (workout_hist[this.state.date][i].id === currWorkout.id) {
+                            else if (workout_hist[date][i].id === currWorkout.id) {
                                 isUnique = false;
                                 alert("Workout already exists.")
                             }
                         }
                         if(isUnique) {
-                            workout_hist[this.state.date].push(currWorkout);
-                            alert("Saved");
+                            workout_hist[date].push(currWorkout);
                         }
                         const userRef = db.collection("users").doc(uid);
                         console.log(JSON.stringify(workout_hist));
-                        // Set the "capital" field of the city 'DC'
+                        
                         return userRef.update({
                             workout_hist: JSON.stringify(workout_hist)
+                        }).then(() => {
+                            this.props.closeDetails();
+                            alert("Workout saved!");    // only alert after db has been updated
                         });
+                        
                     })
                 }
-                
             }
-        }).then(resp => {this.props.closeDetail();})
-        .catch(err => console.log(err))
+        }).catch(err => console.log(err))
     }
 
     render() {
         return (
             <>
                 <div className="workoutDetails">
-                    <p className="workoutDetailsTitle">{this.state.workout}</p>
+                    <p className="workoutDetailsTitle">{this.props.workout}</p>
                     <form onSubmit={this.saveWorkout}>
-                        <input type="text" id="numberOfSets" name="numberOfSets" placeholder="sets"/>
-                        <input type="text" id="numberOfReps" name="numberOfReps" placeholder="reps"/>
-                        <input type="text" id="workoutWeight" name="workoutWeight" placeholder="weight"/><br></br><br></br>
+                        <TextField variant="standard" label="Sets" type="text" id="numberOfSets" name="numberOfSets" required/>
+                        <TextField variant="standard" label="Reps" id="numberOfReps" name="numberOfReps" required/>
+                        <TextField variant="standard" label="Weight" id="workoutWeight" name="workoutWeight" required/><br/><br/><br></br>
                         <Button type="submit" id="workoutSubmitBtn">Save Workout</Button>
                     </form>
                 </div>

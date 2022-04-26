@@ -18,14 +18,14 @@ body {
   
   #header {
     padding: 10px;
-    color: #d36c6c;
+    color: black;
     font-size: 26px;
     font-family: sans-serif;
     display: flex;
     justify-content: space-between;
   }
   #header button {
-    background-color:#92a1d1;
+    background-color:#fda557;
   }
   #calendarcontainer {
     /* border: 1px solid; */
@@ -40,7 +40,7 @@ body {
   #weekdays {
     width: 100%;
     display: flex;
-    color: #247BA0;
+    color: rgb(224, 146, 0);
   }
   #weekdays div {
     width: 100px;
@@ -66,7 +66,7 @@ body {
     justify-content: space-between;
   }
   .day:hover {
-    background-color: #e8faed;
+    background-color: orange;
   }
   
   .day + #currentDay {

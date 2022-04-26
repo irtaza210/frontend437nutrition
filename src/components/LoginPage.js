@@ -4,6 +4,7 @@ import './LoginPage.css';
 import firebase from "../fire";
 import {db} from '../fire';
 import Checkbox from "@material-ui/core/Checkbox";
+import Button from '@material-ui/core/Button';
 // Login Form template taken from https://codepen.io/Devel0per95/pen/rjOpdx 
 // Handles display of Login or Register pages 
 class LoginPage extends Component {
@@ -61,10 +62,10 @@ class LoginPage extends Component {
 
         } else {
             return (
-                <div>
+                <div className="registerContainer">
                     <div className="form-style-3">
                         <form onSubmit={(e) => this.registerClicked(e)}>
-                            <fieldset><legend>Sign Up Info</legend>
+                            <fieldset><legend id="yourprofile">Sign Up Info</legend>
                                 {/* Name, email, password, confirm password info: */}
                                 <label htmlFor="name"><span>Name <span className="required">*</span></span><input type="text" className="input-field" name="name" /></label>
                                 <label htmlFor="email"><span>Email <span className="required">*</span></span><input type="email" className="input-field" name="email" /></label>
@@ -74,7 +75,7 @@ class LoginPage extends Component {
                                 {/* <div> <label><span>Height</span></label> </div> */}
                                 
                             </fieldset>
-                            <fieldset><legend>Settings</legend>
+                            <fieldset><legend id="yourprofile">Settings</legend>
                                 <label htmlFor="age"><span>Age </span><input type="number" className="input-field" name="age" min="0" /></label>
                                 <label htmlFor="weight"><span>Weight </span><input type="number" className="input-field" name="weight" min="0" /></label>
                                 <label id="heightLabel">
@@ -85,7 +86,7 @@ class LoginPage extends Component {
                                     </div>
                                     
                                 </label>
-
+                                <br></br>
                                 {/* Dropdown for gender */}
                                 <label htmlFor="gender"><span>Gender</span>
                                     <select name="gender" className="select-field">
@@ -93,7 +94,7 @@ class LoginPage extends Component {
                                         <option value="male">Male</option>
                                         <option value="other">Other</option>
                                     </select>
-                                </label>
+                                </label><br></br>
                                 {/* Checkboxes for dietary restrictions: */}
                                 <label id="dietLabel">Check any allergies you have:</label>  
                                 <label className="checkboxLabel"><input type="checkbox" name="dairy" value="dairy" /><span>Dairy</span></label>
@@ -108,7 +109,8 @@ class LoginPage extends Component {
                                 <label className="checkboxLabel"><input type="checkbox" name="vegan" value="vegan" /><span>Vegan</span></label> */}
 
                                 {/* <label htmlFor="field6"><span>Message <span className="required">*</span></span><textarea name="field6" className="textarea-field"></textarea></label> */}
-                                <input type="submit" value="Sign Up" />
+                                {/* <input type="submit" value="Sign Up" /> */}
+                                <Button id="signupbutton" type="submit">Sign Up</Button>
                                 <p className="forgot" align="center" onClick={(e) => this.hideRegisterForm(e)} ><a className="link" href="#">Already have an account? Login</a></p>
                             </fieldset>
                         </form>
@@ -236,6 +238,10 @@ class LoginPage extends Component {
 
     resetPassword(event) {
         event.preventDefault();
+        if (document.getElementById("useremail").value.trim().length === 0) {
+            alert("Error: Email field is empty, please type your email");
+            return;
+        }
         firebase.auth().sendPasswordResetEmail(document.getElementById("useremail").value)
               .then(() => {
                 alert("password reset email sent")

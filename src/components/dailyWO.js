@@ -8,8 +8,6 @@ import Button from '@material-ui/core/Button';
 import Paragraph from './Paragraph';
 import PastMeals from './PastMeals';
 
-// import Button from '@material-ui/core/Button';
-// npx kill-port 3000
 class Workout extends Component {
     constructor(props) {
         super(props);
@@ -21,9 +19,6 @@ class Workout extends Component {
             isAdding: false,
             recurring: [],
             pastmeals: [],
-            // recurringworkouts: [
-
-            // ], 
             workouts: [
                 
             ],
@@ -153,7 +148,6 @@ class Workout extends Component {
                 
                 
                 const userRef = db.collection("users").doc(uid);
-                // Set the "capital" field of the city 'DC'
                 return userRef.update({
                     workout_hist: JSON.stringify(workout_hist)
                 });
@@ -191,6 +185,7 @@ class Workout extends Component {
                 })
             }
         }
+        alert("Your changes have been saved!")
         setTimeout(() => {this.saveWorkouts()}, 1000);
     }
 
@@ -212,16 +207,14 @@ class Workout extends Component {
     )
 
     createParagraph = (workoutName) => {  
-         
-        // const div = document.createElement('div');
-        // div.className = 'foo';
-        // let node = document.createTextNode(workoutName);
-        // div.appendChild(node);
-        // document.getElementsByClassName("recurring")[0].appendChild(div);
         if (this.set.has(workoutName)) {}
         else {
             this.set.add(workoutName);
-            document.getElementById("recurring").innerHTML+=workoutName + "<br />";
+            var div = document.createElement("div");
+            div.id = "recurringworkout"
+            div.innerHTML=workoutName + "<br />";
+            document.getElementById("recurring").appendChild(div);
+            document.getElementById("recurring").innerHTML+= "<br />";
         }
         
         
@@ -232,9 +225,7 @@ class Workout extends Component {
         this.createParagraph(workoutName)
     )
     createFutureParagraphs = () => {
-        // console.log("creating paragraphs!");
         this.state.recurring.map(this.paragraphIntermediate)
-        
     }
     
     updateRecurringState = (name) => {
@@ -269,7 +260,6 @@ class Workout extends Component {
                         const weight = workouts[i].weight;
                         db.collection("workouts").doc(workouts[i].id).get().then((doc2) => {
                             this.updateWorkoutState(doc2.data().name + "-" + sets + "-" + reps + "-" + weight);
-                            // this.updateWorkoutState(doc2.data().name);
                         })
                     }
                 }
@@ -313,7 +303,6 @@ class Workout extends Component {
                             const weight = dailyWorkouts[i].weight;
                             this.selectedCheckboxesIDs.add(dailyWorkouts[i].id);
                             db.collection("workouts").doc(dailyWorkouts[i].id).get().then((doc3) => {
-                                // console.log(doc3.data().name);
                                 this.selectedCheckboxes.add(doc3.data().name + "-" + sets + "-" + reps + "-" + weight);
                                 
                             })
@@ -333,7 +322,6 @@ class Workout extends Component {
             db.collection("users").doc(uid).get().then((doc2) => {
                 var recurring_workout = JSON.parse(doc2.data().recurring_workout);
                 var recurringWorkouts = recurring_workout[dayName];
-                // console.log(recurringWorkouts);
                 var array = [];
                 var sum = 0;
                 if (typeof recurringWorkouts != 'undefined') {
@@ -359,7 +347,6 @@ class Workout extends Component {
         // var today = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
         var today = new Date();
         today = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 12, 0, 0);
-        // today.setHours(12, 0, 0);
         console.log("today " + today);
         console.log("Dash date " + this.state.dashdate);
         const clickeddate = new Date(`${this.state.dashdate}T12:00:00`);
@@ -373,7 +360,6 @@ class Workout extends Component {
         console.log(today > clickeddate);
         console.log(today < clickeddate);
         const pastmealsdate = this.formatDate(clickeddate);
-        // alert(pastmealsdate);
         
         if (today > clickeddate) {
             this.convertDateToString().then(response => {
@@ -398,12 +384,12 @@ class Workout extends Component {
         if (today < clickeddate) {
             return (
                 <>
-                    <div class="workoutContent">
-                        <div class="currentWorkouts">
+                    <div className="workoutContent">
+                        <div className="currentWorkouts">
                             <Button id="dailyWOback" onClick={this.props.closeWorkoutsFunction}>Back</Button>
                             <h2>{this.props.date.day + " " + this.props.date.monthAndYear}</h2>
                             {this.createFutureParagraphs()}
-                            <div>Your Future Recurring Workouts:</div><br></br>
+                            <div id="heading"><h1>Your Future Recurring Workouts:</h1></div><br></br>
                             <div id="recurring"></div>
                         </div>
                     </div>
@@ -414,18 +400,6 @@ class Workout extends Component {
             return (
                 <>
                     <div className="AddWorkoutForm">
-                        {/* <div class="currentWorkouts"> */}
-                            {/* <Button onClick={this.props.closeWorkoutsFunction}>Back</Button> */}
-                            {/* <h1>Daily Workouts</h1> */}
-                            {/* <h2>{this.props.date.day + " " + this.props.date.monthAndYear}</h2> */}
-                            {/* <form onSubmit={this.handleFormSubmit}>
-                                {this.createCheckboxes()}
-                                <button className="btn btn-default" type="submit" id="save">Save</button>
-                            </form> */}
-                            {/* <AddWorkout date={this.state.date} closeAddWorkoutsFunction={this.closeAddWorkouts}/> */}
-                            {/* <PastMeals date={this.state.date}/> */}
-                        {/* </div> */}
-                        {/* <button onClick={this.addWorkouts} class="addWorkouts" id="add">Add a Workout</button> */}
                         <AddWorkout id="AddWorkoutComponent" date={this.state.date} closeAddWorkoutsFunction={this.closeAddWorkouts}/>
                         {/* <PastMeals id="PastMealsComponent" date={pastmealsdate}/> */}
 
@@ -436,21 +410,21 @@ class Workout extends Component {
         else {
             return (
                 <>
-                    <div class="workoutContent">
-                        <div class="currentWorkouts">
-                        <Button id="backBtnDailyWO" size="small" onClick={this.props.closeWorkoutsFunction}>Back</Button>
+                    <div className="workoutContent">
+                        <div className="currentWorkouts">
+                        <Button id="backBtnDailyWO" size="small" onClick={this.props.closeWorkoutsFunction}>BACK</Button>
                             <h1 id="dailyWOheader">Daily Workouts</h1>
                             <h2>{this.props.date.day + " " + this.props.date.monthAndYear}</h2>
                             <form onSubmit={this.handleFormSubmit}>
                                 {this.createCheckboxes()}
                                 <br></br>
-                                <Button className="btn btn-default" size="small" type="submit" id="save">Save</Button>
+                                <Button className="btn btn-default" size="small" type="submit" id="save">SAVE CHANGES</Button>
                             </form>
                             
                             
                         </div>
                         <br></br>
-                        {/* <Button onClick={this.addWorkouts} class="addWorkouts" id="add">Add a Workout</Button> */}
+                        {/* <Button onClick={this.addWorkouts} className="addWorkouts" id="add">Add a Workout</Button> */}
                         <Button onClick={this.addWorkouts} size="small" id="add">Add a Workout</Button><br></br> <br></br>
                         
                         <PastMeals date={pastmealsdate}/>

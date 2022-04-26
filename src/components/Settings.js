@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './Settings.css';
 import firebase from "../fire";
 import { db } from '../fire';
+import Button from '@material-ui/core/Button';
 import Checkbox from "@material-ui/core/Checkbox";
 
 class Settings extends Component {
@@ -46,13 +47,13 @@ class Settings extends Component {
                     <div className="form-style-3">
                         <form onSubmit={(e) => this.updateClicked(e)}>
                             {/* Profile info (cannot update)  */}
-                            <fieldset><legend>Your Profile</legend>
+                            <fieldset><legend id="yourprofile">Your Profile</legend>
                                 <label htmlFor="name"><span>Name </span><input type="text" className="input-field" name="name" value={name} readOnly /></label>
                                 <label htmlFor="email"><span>Email </span><input type="email" className="input-field" name="email" value={email} readOnly /></label>
                             </fieldset>
 
                             {/* User health info (can update) */}
-                            <fieldset><legend>Health Info</legend>
+                            <fieldset><legend id="yourprofile">Health Info</legend>
                                 <label htmlFor="age"><span>Age </span><input type="number" className="input-field" name="age" min="0" defaultValue={age} /></label>
                                 <label htmlFor="weight"><span>Weight </span><input type="number" className="input-field" name="weight" min="0" defaultValue={weight} /></label>
                                 <label id="heightLabel">
@@ -103,7 +104,7 @@ class Settings extends Component {
                                     {diet.vegan ? <input type="checkbox" name="vegan" value="vegan" defaultChecked /> : <input type="checkbox" name="vegan" value="vegan" />} <span>Vegan</span>
                                 </label> */}
 
-                                <input type="submit" value="Update" />
+                                <Button id="settingsupdate" type="submit" value="Update">Update</Button>
                                 {/* When reset clicked, fields reset to original default values (not imp) */}
                                 {/* <input type="reset" value="Reset" /> */}
                             
@@ -161,7 +162,7 @@ class Settings extends Component {
                 // vegetarian: vegetarian,
                 // vegan: vegan,
             }).then(() => {
-                console.log("Updated user info");
+                alert("Updated user info");
                 // Rerender this component with updated info:
                 this.forceUpdate();
             });

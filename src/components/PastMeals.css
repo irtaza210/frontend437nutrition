@@ -17,7 +17,16 @@
 
 .past-meal-element {
     /* background-color: blue; */
-    border: thin solid grey;
+    background-color: #fda85d;
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  height: 30px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: normal;
+  border-radius: 5px;
+  box-shadow: -2px 8px 16px -1px #fccda4;
 }
 h2 {
     height: 10px;

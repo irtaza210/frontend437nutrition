@@ -15,7 +15,7 @@ function Navbar(props) {
             
             {/* Links: */}
             {/* Home: the nutrient breakdown of meals user ate today */}
-            <NavLink className="navlink" to="/"><Button id = "home"><strong>Nutrition</strong></Button></NavLink>
+            <NavLink className="navlink" to="/"><Button id = "home"><strong>Home</strong></Button></NavLink>
             {/* Your Plate: lists the meals the user added today */}
             <NavLink className="navlink" to="/todays-meals"><Button id = "yourmeals"><strong>Meals Today</strong></Button></NavLink>
             {/* Menu: WashU's menu items filtered by location */}

@@ -222,7 +222,7 @@ class MenuPage extends Component {
                 // return Dropwdown + list of meals + detailed view
                 let meal = this.state.detailMeal;
                 let allergens = meal.allergens.map((str, index) =>
-                    <span key={index}>{str}</span>
+                    <span key={index}>{str + " "}</span>
                 );
                 return (
                     <div>

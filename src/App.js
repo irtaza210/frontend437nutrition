@@ -23,11 +23,7 @@ import RecurringWorkouts from './components/RecurringWorkouts';
 import dailywo from './components/dailyWO';
 import PastMeals from './components/PastMeals';
 import { faBreadSlice } from '@fortawesome/free-solid-svg-icons';
-// import Footer from './components/Footer';
 
-/* Notes: 
-  Doc IDs in 'users' are user's uids
-*/
 class App extends Component {
   constructor(props) {
     super(props);
@@ -35,13 +31,11 @@ class App extends Component {
     this.state = {
       // Get current user from localStorage and parse it as an object
       loggedinuser: JSON.parse(localStorage.getItem("loggedinuser")),
-      // loggedinuser: null,
       todaysMeals: null,
 
     }
 
     // Bind the functions so we can use them
-
     this.login = this.login.bind(this);
     this.register = this.register.bind(this);
     this.updateEmailAndPassword = this.updateEmailAndPassword.bind(this);
@@ -53,7 +47,6 @@ class App extends Component {
     this.addMealToPastMeals = this.addMealToPastMeals.bind(this);
     this.handleAddToPlate = this.handleAddToPlate.bind(this);
     this.removeFromPastMeals = this.removeFromPastMeals.bind(this);
-    // this.updateWorkoutHist = this.updateWorkoutHist.bind(this);
     this.getDayString = this.getDayString.bind(this);
     this.formatDateNoPaddingForDay = this.formatDateNoPaddingForDay.bind(this);
 
@@ -103,9 +96,7 @@ class App extends Component {
       return (
         <LoginPage updateEmailAndPassword={this.updateEmailAndPassword} />
       );
-
     }
-
   }
 
   hasOneDayPassed(){
@@ -122,154 +113,11 @@ class App extends Component {
     return true;
   }
 
-//   updateWorkoutHist() {
-//     let user = JSON.parse(localStorage.getItem('loggedinuser'));
-//     let uid = user.uid;
-//     // let lastUpdated = user["lastUpdatedDate"];
-//     // let lastUpdatedDate
-//     let date = new Date();
-//     let todayObj = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 0, 0);
-//     let today = this.formatDateNoPaddingForDay(todayObj);
-//     let day = this.getDayString(todayObj.getDay());
-//     // console.log(day);
-//     // console.log(today);
-//     // if (lastUpdated === null || lastUpdated === undefined) {
-//     //   lastUpdated = "01/01/2019";
-//     //   // alert("if statement");
-//     // }
-//     // let lastUpdatedDate = new Date(lastUpdated); 
-    
-    
-//     console.log(todayObj);
-//     // if (lastUpdatedDate < todayObj) {
-//       db.collection("users").doc(uid).get().then((doc) => {
-//         let data = doc.data();
-//         let workout_hist = JSON.parse(data.workout_hist);
-//         let recurring_workout = JSON.parse(data.recurring_workout);
-//         let workoutHistArr = workout_hist[today];
-//         let recurringWorkoutList = recurring_workout[day];
-//         var newArray = [];
-//         // workoutHistArr = new Set(workoutHistArr);
-        
-//         if (recurringWorkoutList !== null && recurringWorkoutList !== undefined && recurringWorkoutList.length !== 0) {
-//           for (var i=0; i<recurringWorkoutList.length; i++) {
-
-//             var object = {
-//               id: recurringWorkoutList[i].id, 
-//               weight: recurringWorkoutList[i].weight, 
-//               reps: recurringWorkoutList[i].reps,
-//               sets: recurringWorkoutList[i].sets,
-//               completed: recurringWorkoutList[i].completed  
-//             }
-//             var valid = true;
-//             for (var j=0; j<newArray.length; j++) {
-//               if (newArray[j].id === object.id && newArray[j].weight === object.weight && newArray[j].reps === object.reps
-//                 && newArray[j].sets === object.sets && newArray[j].completed === object.completed) {
-//                   // alert("gotcha sucka");
-//                   valid = false;
-//                 }
-//             }
-//             if (valid) {
-//               if (newArray.includes(object)) {
-//                 alert("duplicate");
-//               }
-//               else {
-//                 newArray.push(object);
-//               }
-//             }
-            
-//             // workoutHistArr.add(recurringWorkoutList[i]);
-//           }
-//         }
-//         if (workoutHistArr !== null && workoutHistArr !== undefined && workoutHistArr.length !== 0) {
-//           for (var i=0; i<workoutHistArr.length; i++) {
-//             var object = {
-//               id: workoutHistArr[i].id, 
-//               weight: workoutHistArr[i].weight, 
-//               reps: workoutHistArr[i].reps,
-//               sets: workoutHistArr[i].sets,
-//               completed: workoutHistArr[i].completed   
-//             }
-//             var valid = true;
-//             for (var j=0; j<newArray.length; j++) {
-//               if (newArray[j].id === object.id && newArray[j].weight === object.weight && newArray[j].reps === object.reps
-//                 && newArray[j].sets === object.sets && newArray[j].completed === object.completed) {
-//                   // alert("gotcha sucka");
-//                   valid = false;
-//                 }
-//             }
-//             if (valid) {
-//               if (newArray.includes(object)) {
-//                 alert("duplicate");
-//               }
-//               else {
-//                 newArray.push(object);
-//               }
-//             }
-//           }
-//         }
-//         // console.log(workoutHistArr);
-//         // workoutHistArr = Array.from(workoutHistArr);
-        
-//         // workout_hist[today] = workoutHistArr;
-//         workout_hist[today] = newArray;
-
-        
-
-//         const userRef = db.collection("users").doc(uid);
-//         userRef.update({
-//             workout_hist: JSON.stringify(workout_hist)
-//         }).then(() => {
-//           // let loggedinuser = this.state.loggedinuser;
-//           // user["lastUpdatedDate"] = today;
-//           // localStorage.setItem('loggedinuser', JSON.stringify(user));
-//         });
-         
-        
-//       });
-//     // }
-//   }
-    
-
-// }
-/* Old updateWorkoutHist(): */
-// console.log(workoutHistArr);
-        // console.log(recurringWorkoutList);
-        // if (recurringWorkoutList === null || recurringWorkoutList == undefined || recurringWorkoutList.length === 0) {
-        //   console.log("--- before return ----");
-        //   return;
-        // } else {
-        //   if (workoutHistArr !== null && workoutHistArr !== undefined && workoutHistArr.length !== 0) {
-        //     for (var i=0; i<workoutHistArr.length; i++) {
-              
-        //       if (!newArray.has(workoutHistArr[i])) {
-        //         newArray.push(workoutHistArr[i]);
-                
-        //       }
-        //       // let obj = newArray[i];
-              
-        //     }
-        //   } else {
-        //     workoutHistArr = [];
-        //   }
-          
-        //   for (var i=0; i<recurringWorkoutList.length; i++) {
-        //     if (!newArray.has(recurringWorkoutList[i])) {
-        //       newArray.push(recurringWorkoutList[i]);
-        //     }
-        //   }
-
-          // const toFindDuplicates = arry => arry.filter((item, index) => arr.indexOf(item) !== index)
-          // const duplicateElementa = tofindDuplicates(arry);
-          // console.log(duplicateElements);
-
-          // workoutHistArr = newArray;
 
   // Helper functions for formatting dates:
   padTo2Digits(num) {
     return num.toString().padStart(2, '0');
   }
-
   /* Accepts a Date object and converts it to string "MM/DD/YYYY" */
   formatDate(date) {
     return [
@@ -278,6 +126,7 @@ class App extends Component {
       date.getFullYear(),
     ].join('/');
   }
+  /* Converts the date object to string "MM/D/YYYY" */
   formatDateNoPaddingForDay(date) {
     return [
       this.padTo2Digits(date.getMonth() + 1),
@@ -528,35 +377,17 @@ class App extends Component {
   };
 
   logOut() {
-
-    // firebase.auth().signOut().then(() => {
-    //   // localStorage.removeItem("loggedinuser") // remove user from localStorage
-    //   localStorage.clear();   // clear local cache completely
-    //   let loggingOutUserEmail = this.state.loggedinuser.email;
-    //   this.setState({ 
-    //     loggedinuser: null,
-    //    }, function () {
-    //     console.log(`${loggingOutUserEmail} logged out`);
-
-    //   });
-    // });
-    // BELOW CODE FIXED THE WARNING ABOUT NOT BEING ABLE TO SET STATE ON UNMOUNTED COMPONENT:
     this.setState({
       loggedinuser: null,
     }, function () {
-
       firebase.auth().signOut().then(() => {
         localStorage.clear();   // clear local cache completely
         console.log("Successfully logged out");
-
       });
-
     });
-
   };
 
 
-
-
 }
+
 export default App;

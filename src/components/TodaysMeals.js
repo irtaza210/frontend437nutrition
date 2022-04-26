@@ -46,7 +46,7 @@ class TodaysMeals extends Component {
                             onClick={this.removeFromPlate.bind(this, meal.id)}
                             className="close-icon" />
                     </div>
-                    <br></br>
+                    <br></br><br></br><br></br>
                 </div>
             );
 
@@ -60,7 +60,9 @@ class TodaysMeals extends Component {
         } else {
             this.fetchUserMeals();
             return (
-                <div><h1 id="mealsheader">Meals for {dobFormat} </h1> <br></br></div>
+                <div><h1 id="mealsheader">Meals for {dobFormat} </h1> <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                <h3>You have added no meals so far</h3>
+                </div>
             );
         }
 

@@ -2,8 +2,12 @@
     float: left;
     height: 400px;
     width: 49%;
+    
 }
 #add2 {
-    background-color: purple;
+    background-color: #FA9741;
     color: white;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }

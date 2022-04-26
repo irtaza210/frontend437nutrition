@@ -291,3 +291,10 @@ a.link {
   width: 50px;
   margin: 5px;
 }
+.registerContainer {
+  position: relative;
+  top: -70px;
+}
+#signupbutton {
+  background-color: orange;
+}

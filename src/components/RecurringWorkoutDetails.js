@@ -2,19 +2,13 @@ import React, { Component } from 'react'
 import './RecurringWorkoutDetails.css';
 import firebase from "../fire";
 import { db } from '../fire';
-import WOCheckbox from './WOCheckbox'; 
 import Button from '@material-ui/core/Button';
-import { doc, updateDoc } from "firebase/firestore";
-// import TextField from '@mui/material/TextField';
 import TextField from "@material-ui/core/TextField";
-// import Button from '@material-ui/core/Button';
 
 class RecurringWorkoutDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            workout: this.props.workout,
-            date: this.props.date,
             currentWorkoutId: -1,
         }
     }
@@ -36,7 +30,7 @@ class RecurringWorkoutDetails extends Component {
                 let uid = firebase.auth().currentUser.uid;
                 db.collection("workouts").get().then(querySnapshot => {
                     querySnapshot.docs.forEach(doc2 => {
-                        if (doc2.data().name === this.state.workout) {
+                        if (doc2.data().name === this.props.workout) {
                             this.setCurrentWorkoutId(doc2.id).then(response => {
                                 resolve("id retrieved successfully");
                             }).catch();
@@ -47,99 +41,49 @@ class RecurringWorkoutDetails extends Component {
         })
     }
 
-    // saveWorkout = (event) => {
-    //     event.preventDefault();
-    //     this.getWorkoutID().then(id => {
-    //         if (this.state.currentWorkoutId !== -1) {
-    //             if (firebase.auth().currentUser !== null) {
-    //                 let uid = firebase.auth().currentUser.uid;
-    //                 db.collection("users").doc(uid).get().then((doc2) => {
-    //                     var workout_hist = JSON.parse(doc2.data().workout_hist);
-    //                     console.log("first", workout_hist)
-    //                     var reps = event.target.elements.numberOfReps.value
-    //                     var weight = event.target.elements.workoutWeight.value
-    //                     var sets = event.target.elements.numberOfSets.value
-    //                     if (!(this.state.date in workout_hist)){
-    //                         workout_hist[this.state.date] = []
-    //                     }
-                        
-    //                     var currWorkout = {
-    //                         id: this.state.currentWorkoutId,
-    //                         weight: weight,
-    //                         reps: reps,
-    //                         sets: sets,
-    //                         completed: false
-    //                     }
-                        
-    //                     workout_hist[this.state.date].push(currWorkout)
-    //                     const userRef = db.collection("users").doc(uid);
-    //                     console.log(JSON.stringify(workout_hist));
-    //                     // Set the "capital" field of the city 'DC'
-    //                     return userRef.update({
-    //                         workout_hist: JSON.stringify(workout_hist)
-    //                     });
-    //                 })
-    //             }
-    //         }
-    //     }).catch(err => console.log(err))
-    // }
-
     saveRecurringWorkout = (event) => {
         event.preventDefault();
         this.getWorkoutID().then(id => {
          if (this.state.currentWorkoutId !== -1) {
-            if (firebase.auth().currentUser !== null) {
-                let uid = firebase.auth().currentUser.uid;
+            let user = JSON.parse(localStorage.getItem('loggedinuser'));
+            if (user !== null) {
+                let uid = user.uid;
                 db.collection("users").doc(uid).get().then((doc2) => {
-                    console.log(doc2.data().recurring_workout);
-                    var recurring_workout = JSON.parse(doc2.data().recurring_workout);
-                    console.log("second", recurring_workout);
-                    var reps = event.target.elements.numberOfReps.value;
-                    var weight = event.target.elements.workoutWeight.value;
-                    var sets = event.target.elements.numberOfSets.value;
-                    var checkedDays=[]
-                    if (document.getElementById("Monday").checked) {
-                        checkedDays.push("Monday");
-                        
-                    }
-                    if (document.getElementById("Tuesday").checked) {
-                        checkedDays.push("Tuesday");
-                    }
-                    if (document.getElementById("Wednesday").checked) {
-                        checkedDays.push("Wednesday");
-                        
-                    }
-                    if (document.getElementById("Thursday").checked) {
-                        checkedDays.push("Thursday");
-                    }
-                    if (document.getElementById("Friday").checked) {
-                        checkedDays.push("Friday");
-                    }
-                    if (document.getElementById("Saturday").checked) {
-                        checkedDays.push("Saturday");
-                    }
-                    if (document.getElementById("Sunday").checked) {
-                        checkedDays.push("Sunday");
-                    }
+                    let data = doc2.data();
+                    var recurring_workout = JSON.parse(data.recurring_workout);
+                    var reps = event.target.numberOfReps.value;
+                    var weight = event.target.workoutWeight.value;
+                    var sets = event.target.numberOfSets.value;
+                    var checkedDays=[];
+                    if (event.target.Monday.checked) checkedDays.push("Monday");
+                    if (event.target.Tuesday.checked) checkedDays.push("Tuesday");
+                    if (event.target.Wednesday.checked) checkedDays.push("Wednesday");
+                    if (event.target.Thursday.checked) checkedDays.push("Thursday");
+                    if (event.target.Friday.checked) checkedDays.push("Friday");
+                    if (event.target.Saturday.checked) checkedDays.push("Saturday");
+                    if (event.target.Sunday.checked) checkedDays.push("Sunday");
+
                     if (checkedDays.length === 0) {
                         alert("Please check a day");
                         return;
                     }
                     
-                    
                     var currWorkout = {
-                            id: this.state.currentWorkoutId,
-                            weight: weight,
-                            reps: reps,
-                            sets: sets,
-                            completed: false
+                        id: this.state.currentWorkoutId,
+                        weight: weight,
+                        reps: reps,
+                        sets: sets,
+                        completed: false
                     }
                     for (var i=0; i<checkedDays.length; i++) {
                         var goahead = true;
                         for (var j=0; j<recurring_workout[checkedDays[i]].length; j++) {
-                            if (recurring_workout[checkedDays[i]][j].id === currWorkout.id && recurring_workout[checkedDays[i]][j].weight === currWorkout.weight && recurring_workout[checkedDays[i]][j].reps === currWorkout.reps && recurring_workout[checkedDays[i]][j].sets === currWorkout.sets) {
-                                alert("This workout is already recurring for " + checkedDays[i] + " so it will not be added again for this day");
+                            if (recurring_workout[checkedDays[i]][j].id === currWorkout.id) {
+                                alert("This workout is already recurring for " + checkedDays[i] + " so it will now be updated with the new information that was input");
                                 goahead = false;
+                                recurring_workout[checkedDays[i]][j].weight = currWorkout.weight;
+                                recurring_workout[checkedDays[i]][j].sets = currWorkout.sets;
+                                recurring_workout[checkedDays[i]][j].reps = currWorkout.reps;
                             }
                         }
                         if (goahead) {
@@ -148,7 +92,7 @@ class RecurringWorkoutDetails extends Component {
                     }
                         const userRef = db.collection("users").doc(uid);
                         console.log(JSON.stringify(recurring_workout));
-                        // Set the "capital" field of the city 'DC'
+
                         alert("Recurring Workout has been added for Checked Days if it wasn't already there");
                         return userRef.update({
                             recurring_workout: JSON.stringify(recurring_workout)
@@ -164,25 +108,25 @@ class RecurringWorkoutDetails extends Component {
         return (
             <>
                 <div className="workoutDetails2">
-                    <p className="workoutDetailsTitle">{this.state.workout}</p>
+                    <p className="workoutDetailsTitle">{this.props.workout}</p>
                     <form onSubmit={this.saveRecurringWorkout}>
-                        <TextField variant="standard" label="Sets" type="text" id="numberOfSets" name="numberOfSets"/>
-                        <TextField variant="standard" label="Reps" id="numberOfReps" name="numberOfReps"/>
-                        <TextField variant="standard" label="Weight" id="workoutWeight" name="workoutWeight"/><br/><br/>
+                        <TextField variant="standard" label="Sets" type="text" id="numberOfSets" name="numberOfSets" required/>
+                        <TextField variant="standard" label="Reps" id="numberOfReps" name="numberOfReps" required/>
+                        <TextField variant="standard" label="Weight" id="workoutWeight" name="workoutWeight" required/><br/><br/>
                         <input type="checkbox" id="Monday" name="Monday" value="Monday"/>
-                        <label for="Monday"> Monday</label><br/>
+                        <label htmlFor="Monday"> Monday</label><br/>
                         <input type="checkbox" id="Tuesday" name="Tuesday" value="Tuesday"/>
-                        <label for="Tuesday"> Tuesday</label><br/>
+                        <label htmlFor="Tuesday"> Tuesday</label><br/>
                         <input type="checkbox" id="Wednesday" name="Wednesday" value="Wednesday"/>
-                        <label for="Wednesday"> Wednesday</label><br/>
+                        <label htmlFor="Wednesday"> Wednesday</label><br/>
                         <input type="checkbox" id="Thursday" name="Thursday" value="Thursday"/>
-                        <label for="Thursday"> Thursday</label><br/>
+                        <label htmlFor="Thursday"> Thursday</label><br/>
                         <input type="checkbox" id="Friday" name="Friday" value="Friday"/>
-                        <label for="Friday"> Friday</label><br/>
+                        <label htmlFor="Friday"> Friday</label><br/>
                         <input type="checkbox" id="Saturday" name="Saturday" value="Saturday"/>
-                        <label for="Saturday"> Saturday</label><br/>
+                        <label htmlFor="Saturday"> Saturday</label><br/>
                         <input type="checkbox" id="Sunday" name="Sunday" value="Sunday"/>
-                        <label for="Sunday"> Sunday</label><br/><br></br>
+                        <label htmlFor="Sunday"> Sunday</label><br/><br></br>
                         <Button type="submit" id="workoutSubmitBtn2" size="small" value="done">Done</Button>
                     </form>
                 </div>

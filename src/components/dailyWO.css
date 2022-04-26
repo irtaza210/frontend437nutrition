@@ -21,22 +21,27 @@
     /* border: 1px solid; */
 }
 #save, #add{
-    background-color: black;
+    background-color: #FA9741;
     color: white;
 }
 #save {
     width: 150px;
   background-color: #FA9741;
+  position: relative;
+  top: 50px;
+
 }
 #add {
     width: 150px;
   background-color: #FA9741;
+  position: relative;
+  top: -50px;
 }
 
 #dailyWOback {
   /* position: fixed;
   top: 7%; */
-  background-color: black;
+  background-color: #FA9741;
   color: white;
 }
 #dailyWOheader {
@@ -54,4 +59,18 @@
 
 #backBtnDailyWO:hover {
     background-color: #FA9741;
+}
+#recurringworkout {
+  
+  background-color: #fda85d;
+  color: black;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  height: 30px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: normal;
+  border-radius: 5px;
+  box-shadow: -2px 8px 16px -1px #fccda4;
 }

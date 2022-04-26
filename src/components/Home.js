@@ -60,8 +60,8 @@ class Home extends Component {
                     {/* <br></br> */}
                     <div>
                     <HomeCalendar></HomeCalendar>
-                    <div id="total"><h1>Total Calories: {totals.calories} Kcal</h1> </div>
-                    <div id="recommended"><h2>Recommended: {recommendedcalories} Kcal <br></br>Recommended Water Intake: {recommendedwater} Ounces</h2></div>
+                    <div id="total"><h1>Total Calories: {totals.calories}</h1> </div>
+                    <div id="recommended"><h2>Recommended Calories: {recommendedcalories} <br></br>Recommended Water Intake: {recommendedwater} Ounces</h2></div>
                     </div>
                     <div id="chart" style={{display: 'flex', maxWidth: 660}}>
                         <Chart
@@ -84,20 +84,20 @@ class Home extends Component {
                                 // Sugars:      50 g
                                 ['Nutrients', 'Your intake', { role: 'style' }, { role: 'annotation' }, 'Recommended intake', { role: 'style' }, { role: 'annotation' }],
                                 // ['Calories', totals.calories, 'stroke-color: #703593; stroke-width: 4; fill-color: #C5A5CF', `You`, 2000, 'stroke-width: 2; fill-color: lightblue; stroke-color: blue; opacity: 0.5', `Recommended`],
-                                ['Fat', totals.fat_g, 'stroke-color: #F2C57C; stroke-width: 4; fill-color: #F2C57C', `You`, 0.27 * recommendedcalories * 0.1296, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
-                                ['Sat. fat', totals.sat_fat_g, 'stroke-color: #DDAE7E; stroke-width: 4; fill-color: #DDAE7E', `You`, 0.10 * recommendedcalories * 0.1296, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
+                                ['Fat (in g)', totals.fat_g, 'stroke-color: #F2C57C; stroke-width: 4; fill-color: #F2C57C', `You`, 0.27 * recommendedcalories * 0.1296, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
+                                ['Sat. fat (in g)' , totals.sat_fat_g, 'stroke-color: #DDAE7E; stroke-width: 4; fill-color: #DDAE7E', `You`, 0.10 * recommendedcalories * 0.1296, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
                                 // ['Cholesterol', totals.chol_g, 'stroke-color: #7FB685; stroke-width: 4; fill-color: #7FB685', `You`, 0.3, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
-                                ['Carbs', totals.carbs_g, 'stroke-color: #426A5A; stroke-width: 4; fill-color: #426A5A', `You`, 0.55 * recommendedcalories * 0.1296, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
-                                ['Sodium', totals.sodium_g, 'stroke-color: #EF6F6C; stroke-width: 4; fill-color: #EF6F6C', `You`, 2.3, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
-                                ['Fiber', totals.fiber_g, 'stroke-color: #CFA5B4; stroke-width: 4; fill-color: #CFA5B4', `You`, 28, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
-                                ['Protein', totals.protein_g, 'stroke-color: #7A306C; stroke-width: 4; fill-color: #7A306C', `You`, 0.225 * recommendedcalories * 0.1296, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
-                                ['Sugars', totals.sugar_g, 'stroke-color: #D62246; stroke-width: 4; fill-color: #D62246', `You`, 0.05 * recommendedcalories * 0.1296, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
+                                ['Carbs (in g)', totals.carbs_g, 'stroke-color: #426A5A; stroke-width: 4; fill-color: #426A5A', `You`, 0.55 * recommendedcalories * 0.1296, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
+                                ['Sodium (in mg)', totals.sodium_g, 'stroke-color: #EF6F6C; stroke-width: 4; fill-color: #EF6F6C', `You`, 2.3, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
+                                ['Fiber (in g)', totals.fiber_g, 'stroke-color: #CFA5B4; stroke-width: 4; fill-color: #CFA5B4', `You`, 28, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
+                                ['Protein (in g)', totals.protein_g, 'stroke-color: #7A306C; stroke-width: 4; fill-color: #7A306C', `You`, 0.225 * recommendedcalories * 0.1296, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
+                                ['Sugars (in g)', totals.sugar_g, 'stroke-color: #D62246; stroke-width: 4; fill-color: #D62246', `You`, 0.05 * recommendedcalories * 0.1296, 'stroke-width: 2; fill-color: lightblue; stroke-color: lightblue; opacity: 0.5', `Recommended`],
                             ]}
                             options={{
                                 title: "Today's Nutrient Intake",
                                 chartArea: { width: '70%' },
                                 hAxis: {
-                                    title: 'Amount in grams',
+                                    title: 'Amount',
                                     minValue: 0,
                                 },
                                 bar: { groupWidth: "65%" },
@@ -134,8 +134,8 @@ class Home extends Component {
                     {/* <br></br><br></br><br></br> */
                     <HomeCalendar></HomeCalendar> }
                     <br></br>
-                    <div id="total"><h1>Total Calories: 0 Kcal</h1> </div><br></br>
-                    <div id="recommended"><h2>Recommended: {recommendedcalories} Kcal <br></br>Recommended Water Intake: {recommendedwater} Ounces</h2></div>
+                    <div id="total"><h1>Total Calories: 0</h1> </div><br></br>
+                    <div id="recommended"><h2>Recommended Calories: {recommendedcalories} <br></br>Recommended Water Intake: {recommendedwater} Ounces</h2></div>
                     
                 </div>
             )

@@ -28,7 +28,7 @@
     
 }
 .detail-view-container {
-    position: absolute;
+    position: fixed;
     background-color: hsl(0, 0%, 100%);
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     box-shadow: inset #ffc89b;
@@ -49,8 +49,8 @@
 }
 
 #addtoplate {
-    background-color: #587252;
-    color: white;
+    background-color: orange;
+    color: black;
 }
 
 @media screen and (max-width: 426px) {

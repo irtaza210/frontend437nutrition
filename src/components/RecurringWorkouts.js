@@ -6,21 +6,23 @@ class RecurringWorkouts extends Component {
         super(props);
         this.state = {
             selected : 'chests',
-            date: this.props.date
         };
+        this.handleOptionChange = this.handleOptionChange.bind(this);
     }
 
     handleOptionChange = (changeEvent) => {
         this.setState({
             selected: changeEvent.target.value
+        }, function() {
+            console.log(this.state.selected + " is selected");
         });
         
     }
     render() {
         return(
             <>
-                <div class="addWorkoutContent2">
-                    <div class="bodyParts2">
+                <div className="addWorkoutContent2">
+                    <div className="bodyParts2">
                         <h1>Choose Body Part</h1>
                         <form id="bodyPartForm2">
                             <div className="radio">
@@ -61,7 +63,7 @@ class RecurringWorkouts extends Component {
                             </div>
                             
                         </form>
-                        <RecurringWorkoutList option={this.state.selected} date={this.state.date}/>
+                        <RecurringWorkoutList option={this.state.selected} date={this.props.date}/>
                     </div>
                     
                 </div>
